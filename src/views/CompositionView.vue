@@ -34,14 +34,12 @@
 </template>
 <script>
 import { useForm, useField } from 'vee-validate'
-import * as yup from 'yup'
 export default {
   setup () {
     // Define a validation schema
-    const schema = yup.object({
-      email: yup.string().required().email(),
-      password: yup.string().required().min(8)
-    })
+    const schema = {
+      email: 'required|email'
+    }
     // Create a form context with the validation schema
     const { handleSubmit } = useForm({
       validationSchema: schema
