@@ -43,13 +43,19 @@ export default {
       password: yup.string().required().min(8)
     })
     // Create a form context with the validation schema
-    useForm({
+    const { handleSubmit } = useForm({
       validationSchema: schema
     })
     // No need to define rules for fields
     const { value: email, errorMessage: emailError } = useField('email')
     const { value: password, errorMessage: passwordError } = useField('password')
+
+    const onSubmit = handleSubmit(values => {
+      alert(JSON.stringify(values, null, 2))
+    })
+
     return {
+      onSubmit,
       email,
       emailError,
       password,
